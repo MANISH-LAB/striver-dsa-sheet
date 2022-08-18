@@ -1,0 +1,22 @@
+https://leetcode.com/problems/two-sum/
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        vector<int> v;
+        map<int,int>m;
+       for(int i=1;i<=nums.size();i++){
+            if(m[target-nums[i-1]]>0){
+               v.push_back(m[target-nums[i-1]]-1);
+               v.push_back(i-1);
+               return v;
+           }
+            m[nums[i-1]]=i;
+       }
+            
+        
+            
+         v.push_back(-1);
+        return v;
+    }
+};
