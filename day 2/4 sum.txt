@@ -1,0 +1,42 @@
+https://leetcode.com/problems/4sum/
+
+class Solution {
+public:
+    vector<vector<int>> fourSum(vector<int>& nums, int target) {
+        vector<vector<int>> v;
+        vector<int> v1;
+        int n= nums.size();
+        int ind=0;
+        set<int> s;
+        vector<set<int>> st;
+        for(int i=0;i<n-3;i++){
+            for(int j=i+1;j<n-2;j++){
+                for(int k=j+1;k<n-1;k++){
+                    for(int p=k+1;p<n;p++){
+                        if(1LL*(nums[i]+nums[j]+nums[k]+nums[p]) ==1LL*(target)){
+                             v1.push_back(nums[i]);s.insert(nums[i]);
+                            v1.push_back(nums[j]); s.insert(nums[j]);
+                            v1.push_back(nums[k]); s.insert(nums[k]);
+                            v1.push_back(nums[p]); s.insert(nums[p]);
+                            bool val=1;
+                            if(!st.empty()){
+                                for(auto x:st){
+                                    if (x==s)val=0;
+                                }
+                                st.push_back(s);
+                            }
+                            if(st.empty()){
+                                st.push_back(s);
+                            }
+                            s.clear();
+                            if(val){
+                            v.push_back(v1);}
+                            v1.clear();
+                        }
+                    }
+                }
+            }
+        }
+        return v;
+    }
+};
